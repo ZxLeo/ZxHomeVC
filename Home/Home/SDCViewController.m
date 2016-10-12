@@ -79,10 +79,15 @@
         _sdcyclesView.top = point.y;
       
    }else if (point.y > 0){
-       CGFloat p = fmod(MIN(self.tableView.height, scrollView.contentOffset.y) , SCREEN_HEIGHT) /SCREEN_HEIGHT * 8;
-       if (p > 1) {
+       
+       CGFloat p = fmod(MIN(self.tableView.height, scrollView.contentOffset.y) , SCREEN_HEIGHT) /SCREEN_HEIGHT * 8.0; // 8.0 倍数 变换速度
+       
+       if (SCREEN_HEIGHT <= point.y || p > 1) //因为取得余数 只算  1倍以内， 超过1 都为显示 p = 1
+       {
            p = 1;
        }
+     
+       NSLog(@"%f",fabs(p));
        [self sssssWithP: fabs(p)];
 
    }
