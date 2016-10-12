@@ -86,7 +86,9 @@
        {
            p = 1;
        }
-     
+       if (point.y == 0){
+           p = 0;
+       }
        NSLog(@"%f",fabs(p));
        [self sssssWithP: fabs(p)];
 
@@ -119,7 +121,9 @@
     CGFloat greenTemp2 = ((green2 - green1) * p) + green1;
     CGFloat blueTemp2 = ((blue2 - blue1) * p) + blue1;
     CGFloat aphTemp2 = (aph2 - aph1) * p + aph1;
-    
+    if (p == 0) {
+        aphTemp2 = 0;
+    }
     self.topView.backgroundColor = [UIColor colorWithRed:redTemp2 green:greenTemp2 blue:blueTemp2 alpha:aphTemp2];
     NSLog(@"%f",aphTemp2);
 
