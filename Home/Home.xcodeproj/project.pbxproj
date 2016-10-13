@@ -146,11 +146,7 @@
 		3C5957D31DAE36F4000AE381 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3C5958441DAE3868000AE381 /* 1.jpg */,
-				3C5958451DAE3868000AE381 /* 2.jpg */,
-				3C5958461DAE3868000AE381 /* 3.jpg */,
-				3C5958471DAE3868000AE381 /* 4.jpg */,
-				3C5958481DAE3868000AE381 /* 5.jpg */,
+				3CDBD3591DAF230500E8E879 /* SdcImage */,
 				3C5958431DAE3750000AE381 /* tools */,
 				3C59583A1DAE372F000AE381 /* SDCViewController.h */,
 				3C59583B1DAE372F000AE381 /* SDCViewController.m */,
@@ -285,6 +281,18 @@
 				3C59583E1DAE373C000AE381 /* UIColor+RGBA.m */,
 			);
 			name = tools;
+			sourceTree = "<group>";
+		};
+		3CDBD3591DAF230500E8E879 /* SdcImage */ = {
+			isa = PBXGroup;
+			children = (
+				3C5958441DAE3868000AE381 /* 1.jpg */,
+				3C5958451DAE3868000AE381 /* 2.jpg */,
+				3C5958461DAE3868000AE381 /* 3.jpg */,
+				3C5958471DAE3868000AE381 /* 4.jpg */,
+				3C5958481DAE3868000AE381 /* 5.jpg */,
+			);
+			name = SdcImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,6 +555,7 @@
 				3C5957EA1DAE36F4000AE381 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
