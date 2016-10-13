@@ -50,6 +50,7 @@
     _tableView.dataSource = self;
     _tableView.tableHeaderView = headerView;
     _tableView.tableFooterView = [[UIView alloc] init];
+    _tableView.scrollIndicatorInsets = UIEdgeInsetsMake(-20, 0, 0, 0);
     
     _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 75)];
     _topView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
@@ -61,6 +62,8 @@
     textField.layer.masksToBounds = YES;
     textField.placeholder = @"   耶耶耶！！！";
     [self.view addSubview:_topView];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -73,29 +76,39 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGPoint point = scrollView.contentOffset;
-   if (point.y < 0) {
-        _sdcyclesView.height = - point.y + 220;
-        _sdcyclesView.top = point.y;
-      
-   }else if (point.y > 0){
-       
-       CGFloat p = fmod(MIN(self.tableView.height, scrollView.contentOffset.y) , SCREEN_HEIGHT) /SCREEN_HEIGHT * 8.0; // 8.0 倍数 变换速度
-       
-       if (SCREEN_HEIGHT <= point.y || p > 1) //因为取得余数 只算  1倍以内， 超过1 都为显示 p = 1
-       {
-           p = 1;
-       }
-       if (point.y == 0){
-           p = 0;
-       }
-       NSLog(@"%f",fabs(p));
-       [self sssssWithP: fabs(p)];
+    if ([scrollView isKindOfClass:[UITableView class]]) {
+        CGPoint point = scrollView.contentOffset;
+        if (point.y < 0) {
+            _sdcyclesView.height = - point.y + 220;
+            _sdcyclesView.top = point.y;
+            [self sssssWithP:0];
 
-   }
+        }else if (point.y > 0){
+            
+            CGFloat p = fmod(MIN(self.tableView.height, scrollView.contentOffset.y) , SCREEN_HEIGHT) /SCREEN_HEIGHT * 8.0; // 8.0 倍数 变换速度
+            
+            if (SCREEN_HEIGHT <= point.y || p > 1) //因为取得余数 只算  1倍以内， 超过1 都为显示 p = 1
+            {
+                p = 1;
+            }
+            if (point.y < 20)
+            {
+                p = 0;
+            }
+            NSLog(@"%f",point.y);
+            [self sssssWithP: fabs(p)];
+            
+        }
+
+    }
     
 }
 
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView{
+    NSLog(@"sssssasdasd");
+    [self sssssWithP: 0];
+
+}
 #pragma mark - 渐变色
 -(void)sssssWithP:(CGFloat)p{
     RGBA rgba = RGBAFromUIColor([UIColor whiteColor]);
@@ -125,7 +138,7 @@
         aphTemp2 = 0;
     }
     self.topView.backgroundColor = [UIColor colorWithRed:redTemp2 green:greenTemp2 blue:blueTemp2 alpha:aphTemp2];
-    NSLog(@"%f",aphTemp2);
+//    NSLog(@"%f",aphTemp2);
 
     
 }
